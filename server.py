@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, url_for
 
 app = Flask(__name__)
 
@@ -25,6 +25,17 @@ def promotion():
             <b>И начнем с Марса!</b>
             <br>
             <b>Присоединяйся!</b>
+            '''
+
+
+@app.route('/image_mars')
+def image_mars():
+    return f'''
+            <h1>Жди нас, Марс!</h1>
+            <br>
+            <img src="{url_for('static', filename="img/image_mars.png")}" alt="марс уничтожен">
+            <br>
+            Вот она, красная планета.
             '''
 
 
