@@ -96,7 +96,7 @@ def astronaut_selection():
                                     <h3>на участие в миссии</h3>
                                 </div>
                                 <div>
-                                    <form class="login_form" method="post">
+                                    <form class="login_form" method="post" enctype="multipart/form-data">
                                         <input type="text" class="form-control" id="surname" placeholder="Введите фамилию" name="surname">
                                         <input type="text" class="form-control" id="name" placeholder="Введите имя" name="name">
                                         <br>
@@ -163,6 +163,8 @@ def astronaut_selection():
         print(request.form.get('builder'))
         print(request.form.get('sex'))
         print(request.form.get('motivation'))
+        file = request.files.get('file')
+        print(file.read())
         print(request.form.get('accept'))
         return "Форма отправлена"
 
