@@ -1,4 +1,4 @@
-from flask import Flask, url_for
+from flask import Flask, url_for, request
 
 app = Flask(__name__)
 
@@ -42,7 +42,7 @@ def image_mars():
 @app.route('/promotion_image')
 def promotion_image():
     return f'''<!doctype html>
-                <html lang="en">
+                <html lang="ru">
                   <head>
                     <meta charset="utf-8">
                     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -73,6 +73,98 @@ def promotion_image():
                     </div>
                   </body>
                 </html>'''
+
+
+@app.route('/astronaut_selection', methods=['POST', 'GET'])
+def astronaut_selection():
+    if request.method == 'GET':
+        return f'''<!doctype html>
+                            <html lang="ru">
+                              <head>
+                                <meta charset="utf-8">
+                                <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+                                <link rel="stylesheet"
+                                href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css"
+                                integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1"
+                                crossorigin="anonymous">
+                                <link rel="stylesheet" type="text/css" href="{url_for('static', filename='css/style.css')}" />
+                                <title>Пример формы</title>
+                              </head>
+                              <body>
+                                <div class="page-title">
+                                    <h1>Анкета претендента</h1>
+                                    <h3>на участие в миссии</h3>
+                                </div>
+                                <div>
+                                    <form class="login_form" method="post">
+                                        <input type="text" class="form-control" id="surname" placeholder="Введите фамилию" name="surname">
+                                        <input type="text" class="form-control" id="name" placeholder="Введите имя" name="name">
+                                        <br>
+                                        <input type="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Введите адрес почты" name="email">
+                                        <div class="form-group">
+                                            <label for="classSelect">Какое у Вас образование?</label>
+                                            <select class="form-control" id="classSelect" name="education">
+                                              <option>Начальное</option>
+                                              <option>Среднее</option>
+                                              <option>Высшее</option>
+                                            </select>
+                                        </div>
+                                        Какие у вас есть профессии?<br>
+                                        <div class="form-group form-check">
+                                            
+                                            <input type="checkbox" class="form-check-input" id="acceptEngenier" name="engenier"> Инженер <br>
+                                            
+                                            <input type="checkbox" class="form-check-input" id="accepDoctor" name="doctor"> Врач <br>
+                                            
+                                            <input type="checkbox" class="form-check-input" id="acceptPilot" name="pilot"> Пилот <br>
+                                            
+                                            <input type="checkbox" class="form-check-input" id="acceptBuilder" name="builder"> Строитель <br>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="form-check">Укажите пол</label>
+                                            <div class="form-check">
+                                              <input class="form-check-input" type="radio" name="sex" id="male" value="male" checked>
+                                              <label class="form-check-label" for="male">
+                                                Мужской
+                                              </label>
+                                            </div>
+                                            <div class="form-check">
+                                              <input class="form-check-input" type="radio" name="sex" id="female" value="female">
+                                              <label class="form-check-label" for="female">
+                                                Женский
+                                              </label>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="about">Почему Вы хотите принять участие в миссии?</label>
+                                            <textarea class="form-control" id="motivation" rows="3" name="motivation"></textarea>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="photo">Приложите фотографию</label>
+                                            <input type="file" class="form-control-file" id="photo" name="file">
+                                        </div>
+                                        <div class="form-group form-check">
+                                            <input type="checkbox" class="form-check-input" id="acceptRules" name="accept">
+                                            <label class="form-check-label" for="acceptRules">Готов остаться на Марсе?</label>
+                                        </div>
+                                        <button type="submit" class="btn btn-primary">Отправить</button>
+                                    </form>
+                                </div>
+                              </body>
+                            </html>'''
+    elif request.method == 'POST':
+        print(request.form.get('surname'))
+        print(request.form.get('name'))
+        print(request.form.get('email'))
+        print(request.form.get('education'))
+        print(request.form.get('engenier'))
+        print(request.form.get('doctor'))
+        print(request.form.get('pilot'))
+        print(request.form.get('builder'))
+        print(request.form.get('sex'))
+        print(request.form.get('motivation'))
+        print(request.form.get('accept'))
+        return "Форма отправлена"
 
 
 if __name__ == '__main__':
