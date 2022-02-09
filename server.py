@@ -57,19 +57,19 @@ def promotion_image():
                     <h1>Жди нас, Марс!</h1>
                     <img src="{url_for('static', filename='img/image_mars.png')}" width="400" height="400">
                     <div class="alert alert-dark" role="alert">
-                      <b>Человечество вырастает из детства.</b>
+                      <h4>Человечество вырастает из детства.</h4>
                     </div>
                     <div class="alert alert-success" role="alert">
-                      <b>Человечеству мала одна планета.</b>
+                      <h4>Человечеству мала одна планета.</h4>
                     </div>
                     <div class="alert alert-secondary" role="alert">
-                      <b>Мы сделаем обитаемыми безжизненные планеты.</b>
+                      <h4>Мы сделаем обитаемыми безжизненные планеты.</h4>
                     </div>
                     <div class="alert alert-warning" role="alert">
-                      <b>И начнём с Марса!</b>
+                      <h4>И начнём с Марса!</h4>
                     </div>
                     <div class="alert alert-danger" role="alert">
-                      <b>Присоединяйся!</b>
+                      <h4>Присоединяйся!</h4>
                     </div>
                   </body>
                 </html>'''
@@ -96,7 +96,7 @@ def astronaut_selection():
                                     <h3>на участие в миссии</h3>
                                 </div>
                                 <div>
-                                    <form class="login_form" method="post">
+                                    <form class="login_form" method="post" enctype="multipart/form-data">
                                         <input type="text" class="form-control" id="surname" placeholder="Введите фамилию" name="surname">
                                         <input type="text" class="form-control" id="name" placeholder="Введите имя" name="name">
                                         <br>
@@ -111,13 +111,13 @@ def astronaut_selection():
                                         </div>
                                         Какие у вас есть профессии?<br>
                                         <div class="form-group form-check">
-                                            
+
                                             <input type="checkbox" class="form-check-input" id="acceptEngenier" name="engenier"> Инженер <br>
-                                            
+
                                             <input type="checkbox" class="form-check-input" id="accepDoctor" name="doctor"> Врач <br>
-                                            
+
                                             <input type="checkbox" class="form-check-input" id="acceptPilot" name="pilot"> Пилот <br>
-                                            
+
                                             <input type="checkbox" class="form-check-input" id="acceptBuilder" name="builder"> Строитель <br>
                                         </div>
                                         <div class="form-group">
@@ -163,8 +163,71 @@ def astronaut_selection():
         print(request.form.get('builder'))
         print(request.form.get('sex'))
         print(request.form.get('motivation'))
+        file = request.files.get('file')
+        print(file.read())
         print(request.form.get('accept'))
         return "Форма отправлена"
+
+
+@app.route('/choice/<planet>')
+def choice(planet):
+    return f'''<!doctype html>
+                <html lang="en">
+                  <head>
+                    <meta charset="utf-8">
+                    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+                   <link rel="stylesheet"
+                   href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css"
+                   integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1"
+                   crossorigin="anonymous">
+                    <title>{planet}</title>
+                  </head>
+                  <body>
+                    <h1>Моё предложение: {planet}</h1>
+                    <b>Эта планета близка к земле;</b>
+                    <div class="alert alert-success" role="alert">
+                      <b>На ней много необходимых ресурсов;</b>
+                    </div>
+                    <div class="alert alert-secondary" role="alert">
+                      <b>На ней есть вода и атмосфера;</b>
+                    </div>
+                    <div class="alert alert-warning" role="alert">
+                     <b> На ней есть небольшое магнитное поле;</b>
+                    </div>
+                    <div class="alert alert-danger" role="alert">
+                     <b>Накоенц, она просто красива!;</b>
+                    </div>
+                  </body>
+                </html>'''
+
+
+@app.route('/results/<nickname>/<int:level>/<float:rating>')
+def results(nickname, level, rating):
+    return f'''<!doctype html>
+                <html lang="ru">
+                  <head>
+                    <meta charset="utf-8">
+                    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+                   <link rel="stylesheet"
+                   href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css"
+                   integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1"
+                   crossorigin="anonymous">
+                    <title>Результаты</title>
+                  </head>
+                  <body>
+                    <h1>Результаты отбора</h1>
+                    <b>Претендент на участие в миссии {nickname}:</b>
+                    <div class="alert alert-success" role="alert">
+                      <b>Поздравляем! Ваш рейтинг после {level} этапа отбора</b>
+                    </div>
+                    <div class="alert alert-check" role="alert">
+                        <b>составляет {rating}!</b>
+                    </div>
+                    <div class="alert alert-warning" role="alert">
+                     <b>Желаем удачи!</b>
+                    </div>
+                  </body>
+                </html>'''
 
 
 if __name__ == '__main__':
