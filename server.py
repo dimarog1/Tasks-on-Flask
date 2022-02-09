@@ -111,13 +111,13 @@ def astronaut_selection():
                                         </div>
                                         Какие у вас есть профессии?<br>
                                         <div class="form-group form-check">
-                                            
+
                                             <input type="checkbox" class="form-check-input" id="acceptEngenier" name="engenier"> Инженер <br>
-                                            
+
                                             <input type="checkbox" class="form-check-input" id="accepDoctor" name="doctor"> Врач <br>
-                                            
+
                                             <input type="checkbox" class="form-check-input" id="acceptPilot" name="pilot"> Пилот <br>
-                                            
+
                                             <input type="checkbox" class="form-check-input" id="acceptBuilder" name="builder"> Строитель <br>
                                         </div>
                                         <div class="form-group">
@@ -229,5 +229,6 @@ def results(nickname, level, rating):
                   </body>
                 </html>'''
 
+  
 if __name__ == '__main__':
     app.run(port=8080, host='127.0.0.1')
