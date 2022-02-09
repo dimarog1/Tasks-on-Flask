@@ -57,19 +57,19 @@ def promotion_image():
                     <h1>Жди нас, Марс!</h1>
                     <img src="{url_for('static', filename='img/image_mars.png')}" width="400" height="400">
                     <div class="alert alert-dark" role="alert">
-                      <b>Человечество вырастает из детства.</b>
+                      <h4>Человечество вырастает из детства.</h4>
                     </div>
                     <div class="alert alert-success" role="alert">
-                      <b>Человечеству мала одна планета.</b>
+                      <h4>Человечеству мала одна планета.</h4>
                     </div>
                     <div class="alert alert-secondary" role="alert">
-                      <b>Мы сделаем обитаемыми безжизненные планеты.</b>
+                      <h4>Мы сделаем обитаемыми безжизненные планеты.</h4>
                     </div>
                     <div class="alert alert-warning" role="alert">
-                      <b>И начнём с Марса!</b>
+                      <h4>И начнём с Марса!</h4>
                     </div>
                     <div class="alert alert-danger" role="alert">
-                      <b>Присоединяйся!</b>
+                      <h4>Присоединяйся!</h4>
                     </div>
                   </body>
                 </html>'''
