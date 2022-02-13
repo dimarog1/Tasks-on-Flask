@@ -30,6 +30,14 @@ def training(prof):
     return render_template('training.html', **param)
 
 
+@app.route('/list_prof/<kind>')
+def list_prof(kind):
+    param = {}
+    param['title'] = kind
+
+    return render_template('training.html', **param)
+
+
 # @app.route('/odd_even')
 # def odd_even():
 #     return render_template('odd_even.html', number=3)
