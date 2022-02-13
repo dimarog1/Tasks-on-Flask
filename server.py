@@ -1,8 +1,4 @@
-import json
-
-from flask import Flask, render_template, redirect
-
-from forms.login_form import LoginForm
+from flask import Flask, render_template
 
 app = Flask(__name__)
 
@@ -34,8 +30,16 @@ def training(prof):
 def list_prof(kind):
     param = {}
     param['title'] = kind
-
-    return render_template('training.html', **param)
+    param['kind'] = kind
+    param['jobs'] = [
+        'Врач',
+        'Строитель',
+        'Инженер',
+        'Сварщик',
+        'Астроном',
+        'Физик'
+    ]
+    return render_template('list_prof.html', **param)
 
 
 # @app.route('/odd_even')
