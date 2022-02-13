@@ -2,9 +2,9 @@
 
 {% block content %}
 <h2>Список профессий</h2>
+<{{ kind }}>
 {% for job in jobs %}
-    {{ kind }}
-        <li>{{ job }}</li>
-    {{ kind }}
+    <li>{{ job }}</li>
 {% endfor %}
+</{{ kind }}>
 {% endblock %}
