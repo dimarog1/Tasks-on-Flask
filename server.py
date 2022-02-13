@@ -1,8 +1,18 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, request
 
 app = Flask(__name__)
 
 app.config['SECRET_KEY'] = 'yandexlyceum_secret_key'
+
+
+title = ''
+surname = ''
+name = ''
+education = ''
+profession = ''
+sex = ''
+motivation = ''
+ready = ''
 
 
 @app.route('/<title>')
@@ -40,6 +50,37 @@ def list_prof(kind):
         'Физик'
     ]
     return render_template('list_prof.html', **param)
+
+
+@app.route('/answer')
+def answer():
+    param = {}
+    param['title'] = 'answer'
+    param['surname'] = surname
+    param['name'] = name
+    param['education'] = education
+    param['profession'] = profession
+    param['sex'] = sex
+    param['motivation'] = motivation
+    param['ready'] = ready
+    return render_template('answer.html', **param)
+
+
+@app.route('/auto_answer', methods=['POST', 'GET'])
+def auto_answer():
+    global title, surname, name, education, profession, sex, motivation, ready
+    if request.method == 'GET':
+        return render_template('auto_answer.html')
+    elif request.method == 'POST':
+        surname = request.form.get('surname')
+        name = request.form.get('name')
+        profession = request.form.get('profession')
+        education = request.form.get('education')
+        sex = request.form.get('sex')
+        motivation = request.form.get('motivation')
+        ready1 = request.form.get('ready')
+        ready = True if ready1 == 'on' else False
+        return "Форма отправлена"
 
 
 # @app.route('/odd_even')
