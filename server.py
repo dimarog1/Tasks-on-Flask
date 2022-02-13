@@ -17,6 +17,27 @@ def index(title):
     return render_template('index.html', **param)
 
 
+@app.route('/training/<prof>')
+def training(prof):
+    param = {}
+    param['title'] = prof
+    if 'инженер' in prof.lower() or 'строитель' in prof.lower():
+        param['phrase'] = 'Инженерные тренажеры'
+        param['image'] = '../static/img/ingenier.png'
+    else:
+        param['phrase'] = 'Научные симуляторы'
+        param['image'] = '../static/img/doctor.jpg'
+    return render_template('training.html', **param)
+
+
+@app.route('/list_prof/<kind>')
+def list_prof(kind):
+    param = {}
+    param['title'] = kind
+
+    return render_template('training.html', **param)
+
+
 # @app.route('/odd_even')
 # def odd_even():
 #     return render_template('odd_even.html', number=3)
