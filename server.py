@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, redirect
 
 app = Flask(__name__)
 
@@ -39,17 +39,18 @@ def training(prof):
 @app.route('/list_prof/<kind>')
 def list_prof(kind):
     param = {}
-    param['title'] = kind
-    param['kind'] = kind
-    param['jobs'] = [
-        'Врач',
-        'Строитель',
-        'Инженер',
-        'Сварщик',
-        'Астроном',
-        'Физик'
-    ]
-    return render_template('list_prof.html', **param)
+    if kind == 'ul' or kind == 'ol':
+        param['title'] = kind
+        param['kind'] = kind
+        param['jobs'] = [
+            'Врач',
+            'Строитель',
+            'Инженер',
+            'Сварщик',
+            'Астроном',
+            'Физик'
+        ]
+        return render_template('list_prof.html', **param)
 
 
 @app.route('/answer')
@@ -80,7 +81,7 @@ def auto_answer():
         motivation = request.form.get('motivation')
         ready1 = request.form.get('ready')
         ready = True if ready1 == 'on' else False
-        return "Форма отправлена"
+        return redirect('/answer')
 
 
 # @app.route('/odd_even')
