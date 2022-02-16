@@ -1,30 +1,48 @@
 {% extends "base.html" %}
 
 {% block content %}
-<h1>Авторизация</h1>
+<div class="head_content">
+    <img src="../static/img/mars.png" alt="mars">
+    <h1>Авторизация</h1>
+</div>
 <form action="" method="post" novalidate>
     {{ form.hidden_tag() }}
-    <p>
-        <div class="form-floating mb-3">
-            {{ form.username(class="form-control") }}
-            {{ form.username.label }}
+    <div class="form-floating mb-3">
+        {{ form.astronaut_id(class="form-control", placeholder="id") }}
+        {{ form.astronaut_id.label }}
+        {% for error in form.astronaut_id.errors %}
+        <div class="alert alert-danger" role="alert">
+            {{ error }}
         </div>
-        {% for error in form.username.errors %}
-    <div class="alert alert-danger" role="alert">
-        {{ error }}
+        {% endfor %}
     </div>
-    {% endfor %}
-    </p>
-    <p>
-        {{ form.password.label }}<br>
-        {{ form.password(class="form-control", type="password") }}<br>
-        {% for error in form.password.errors %}
-    <div class="alert alert-danger" role="alert">
-        {{ error }}
+    <div class="form-floating mb-3">
+        {{ form.astronaut_password(class="form-control", type="password", placeholder="id") }}
+        {{ form.astronaut_password.label }}
+        {% for error in form.astronaut_password.errors %}
+        <div class="alert alert-danger" role="alert">
+            {{ error }}
+        </div>
+        {% endfor %}
     </div>
-    {% endfor %}
-    </p>
-    <p>{{ form.remember_me() }} {{ form.remember_me.label }}</p>
+    <div class="form-floating mb-3">
+        {{ form.capitan_id(class="form-control", placeholder="id") }}
+        {{ form.capitan_id.label }}
+        {% for error in form.capitan_id.errors %}
+        <div class="alert alert-danger" role="alert">
+            {{ error }}
+        </div>
+        {% endfor %}
+    </div>
+    <div class="form-floating mb-3">
+        {{ form.capitan_password(class="form-control", type="password", placeholder="id") }}
+        {{ form.capitan_password.label }}
+        {% for error in form.capitan_password.errors %}
+        <div class="alert alert-danger" role="alert">
+            {{ error }}
+        </div>
+        {% endfor %}
+    </div>
     <p>{{ form.submit(type="submit", class="btn btn-primary") }}</p>
 </form>
 {% endblock %}

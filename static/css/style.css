@@ -1,11 +1,9 @@
-.block {
-    margin: auto;
+.head_content {
+    display: flex;
+    flex-direction: row;
 }
 
-h4 {
-    opacity: .3;
-}
-
-h2 {
-    margin: 0 auto;
+.head_content img {
+    width: 200px;
+    height: 50px;
 }
